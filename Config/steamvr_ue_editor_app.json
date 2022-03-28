@@ -1,0 +1,18 @@
+{
+	"source": "UE",
+	"applications": [
+		{
+			"app_key": "application.generated.ue.agilegameproject-18319896.ue4editor.exe",
+			"launch_type": "url",
+			"url": "steam://launch/",
+			"action_manifest_path": "C:/Users/Its Mine/OneDrive - UCLan/2nd Year/C02403 The Agile Professional/Assignment/AgileGameProject/Config/SteamVRBindings/steamvr_manifest.json",
+			"strings":
+			{
+				"en_us":
+				{
+					"name": "AgileGameProject-18319896 [UE Editor]"
+				}
+			}
+		}
+	]
+}
