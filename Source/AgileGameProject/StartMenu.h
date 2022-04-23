@@ -16,6 +16,7 @@ class AGILEGAMEPROJECT_API UStartMenu : public UUserWidget
 protected:
 	virtual void NativeConstruct() override;
 
+public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 		UButton* TestButton;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
