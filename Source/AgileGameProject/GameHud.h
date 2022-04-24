@@ -7,7 +7,7 @@
 #include "GameHud.generated.h"
 
 class AAgileGameProjectGameModeBase;
-class UUserWidget;
+class UTextBlock;
 
 UCLASS()
 class AGILEGAMEPROJECT_API UGameHud : public UUserWidget
@@ -18,6 +18,8 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
-	UFUNCTION(BlueprintCallable)
-		void InitializeHud(AAgileGameProjectGameModeBase* GameModeRef);
+	UPROPERTY(VisibleInstanceOnly)
+		AAgileGameProjectGameModeBase* GameModeRef;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		TSubclassOf<UUserWidget> GoClass;
 };

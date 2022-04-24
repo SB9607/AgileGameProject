@@ -8,9 +8,10 @@
 
 void AAgileGameProjectGameModeBase::BeginPlay()
 {
+	UWorld* World = GetWorld();
+	check(World);
 	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bShowMouseCursor = false;
 	NumOfLaps = 0;
-
 	// Check widget is valid then create widget
 	if (IsValid(GameHudClass))
 	{
@@ -18,12 +19,30 @@ void AAgileGameProjectGameModeBase::BeginPlay()
 		// Check widget has been created then add to viewport
 		if (Widget)
 		{
-			// Initialize hud
-			GameHud->InitializeHud(this);
 			// Add widgets to viewport
 			Widget->AddToViewport();
 		}
 	}
+	GetWorldTimerManager().SetTimer(StartHandle, this, &AAgileGameProjectGameModeBase::CountdownTimer, 1.0f, true);
+
+}
+
+void AAgileGameProjectGameModeBase::CountdownTimer()
+{
+	if (StartTime > 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Countdown: %d"), StartTime);
+		StartTime -= 1;
+	}
+	else
+	{
+		if (StartHandle.IsValid())
+		{
+			GetWorldTimerManager().ClearTimer(StartHandle);
+		}
+
+	}
+	OnCountdownChanged.Broadcast(StartTime);
 }
 
 void AAgileGameProjectGameModeBase::GameOver(bool bWin)

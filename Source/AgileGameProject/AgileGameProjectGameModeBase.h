@@ -9,6 +9,8 @@
 class UUserWidget;
 class UGameHud;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCountdownChanged, int, StartTime);
+
 UCLASS()
 class AGILEGAMEPROJECT_API AAgileGameProjectGameModeBase : public AGameModeBase
 {
@@ -18,18 +20,25 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-		int NumOfLaps = 0;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY()
+		FTimerHandle StartHandle;
+	UPROPERTY(EditAnywhere)
 		int MaxLaps = 3;
 	UFUNCTION()
 		void GameOver(bool bWin);
+	UFUNCTION()
+		void CountdownTimer();
 
 public:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<UUserWidget> GameHudClass;
-
 	UPROPERTY(VisibleInstanceOnly)
 		UGameHud* GameHud;
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+		FOnCountdownChanged OnCountdownChanged;
+	UPROPERTY(VisibleAnywhere)
+		int StartTime = 3;
+	UPROPERTY(VisibleAnywhere)
+		int NumOfLaps = 0;
 
 };
