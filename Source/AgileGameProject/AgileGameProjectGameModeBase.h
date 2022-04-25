@@ -40,5 +40,7 @@ public:
 		int StartTime = 3;
 	UPROPERTY(VisibleAnywhere)
 		int NumOfLaps = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		bool CanStart = false;
 
 };

@@ -38,6 +38,7 @@ void AAgileGameProjectGameModeBase::CountdownTimer()
 	{
 		if (StartHandle.IsValid())
 		{
+			CanStart = true;
 			GetWorldTimerManager().ClearTimer(StartHandle);
 		}
 
