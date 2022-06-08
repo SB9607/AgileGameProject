@@ -24,7 +24,7 @@ private:
 		FTimerHandle StartHandle;
 	UPROPERTY(EditAnywhere)
 		int MaxLaps = 3;
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void GameOver(bool bWin);
 	UFUNCTION()
 		void CountdownTimer();
@@ -36,13 +36,15 @@ public:
 		UGameHud* GameHud;
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 		FOnCountdownChanged OnCountdownChanged;
+
 	UPROPERTY(VisibleAnywhere)
 		int StartTime = 3;
 	UPROPERTY(VisibleAnywhere)
 		int NumOfLaps = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		int NumOfCheckpointsNeeded = 7;
+		int NumOfCheckpointsNeeded = 8;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool CanStart = false;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool PlayerWin;
 };

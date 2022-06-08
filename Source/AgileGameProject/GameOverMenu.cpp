@@ -1,12 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "GameOverMenu.h"
+#include "GameOverMenuGameModeBase.h"
 #include "Components/Button.h"
+#include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 
 void UGameOverMenu::NativeConstruct()
 {
+	// Get reference to game mode
+	GameModeRef = Cast<AGameOverMenuGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	if (GameModeRef)
+	{
+		GameModeRef->OnGameOver.AddDynamic(this, &UGameOverMenu::ShowWinLoose);
+	}
 	// Check buttons exists and bind the buttons for click events
 	if (MainMenuButton)
 	{
@@ -15,6 +22,20 @@ void UGameOverMenu::NativeConstruct()
 	if (QuitButton)
 	{
 		QuitButton->OnClicked.AddDynamic(this, &UGameOverMenu::OnQuitClick);
+	}
+}
+
+void UGameOverMenu::ShowWinLoose(bool Win)
+{
+	UE_LOG(LogTemp, Warning, TEXT("win/loose"));
+	// Set win text to  display win or loose based on win condition passed from game mode
+	if (Win == true)
+	{
+		WinText->SetText(FText::FromString("You Win!"));
+	}
+	else
+	{
+		WinText->SetText(FText::FromString("You Loose!"));
 	}
 }
 
@@ -37,5 +58,3 @@ void UGameOverMenu::OnQuitClick()
 		UKismetSystemLibrary::ExecuteConsoleCommand(World, TEXT("quit"));
 	}
 }
-
-

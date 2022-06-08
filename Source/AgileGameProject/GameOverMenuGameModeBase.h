@@ -8,6 +8,8 @@
 
 class UUserWidget;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameOver, bool, Win);
+
 UCLASS()
 class AGILEGAMEPROJECT_API AGameOverMenuGameModeBase : public AGameMode
 {
@@ -19,4 +21,8 @@ protected:
 private:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<UUserWidget> GameOverMenuClass;
+
+public:
+	UPROPERTY(BlueprintCallable)
+		FOnGameOver OnGameOver;
 };

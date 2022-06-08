@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-
 #include "AgileGameProjectGameModeBase.h"
+#include "GameOverMenuGameModeBase.h"
 #include "GameHud.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -23,15 +23,15 @@ void AAgileGameProjectGameModeBase::BeginPlay()
 			Widget->AddToViewport();
 		}
 	}
+	// start timer
 	GetWorldTimerManager().SetTimer(StartHandle, this, &AAgileGameProjectGameModeBase::CountdownTimer, 1.0f, true);
-
 }
 
 void AAgileGameProjectGameModeBase::CountdownTimer()
 {
 	if (StartTime > 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Countdown: %d"), StartTime);
+		//UE_LOG(LogTemp, Warning, TEXT("Countdown: %d"), StartTime);
 		StartTime -= 1;
 	}
 	else
@@ -48,13 +48,18 @@ void AAgileGameProjectGameModeBase::CountdownTimer()
 
 void AAgileGameProjectGameModeBase::GameOver(bool bWin)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Game Over"));
+	//UE_LOG(LogTemp, Warning, TEXT("Game Over"));
 	UWorld* World = GetWorld();
 	if (World)
-	{
+	{	
+		// Call game over level
 		if (bWin == true)
 		{
-			UGameplayStatics::OpenLevel(World, TEXT("EndLevel"));
+			UGameplayStatics::OpenLevel(World, TEXT("WinEndLevel"));
+		}
+		if (bWin == false)
+		{
+			UGameplayStatics::OpenLevel(World, TEXT("LooseEndLevel"));
 		}
 	}
 }

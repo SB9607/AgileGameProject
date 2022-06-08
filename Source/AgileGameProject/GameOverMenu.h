@@ -7,6 +7,8 @@
 #include "GameOverMenu.generated.h"
 
 class UButton;
+class UTextBlock;
+class AGameOverMenuGameModeBase;
 
 UCLASS()
 class AGILEGAMEPROJECT_API UGameOverMenu : public UUserWidget
@@ -17,11 +19,17 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
+	UPROPERTY(VisibleInstanceOnly)
+		AGameOverMenuGameModeBase* GameModeRef;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 		UButton* MainMenuButton;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 		UButton* QuitButton;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+		UTextBlock* WinText;
 
+	UFUNCTION()
+		void ShowWinLoose(bool Win);
 	UFUNCTION()
 		void OnMainMenuClick();
 	UFUNCTION()
