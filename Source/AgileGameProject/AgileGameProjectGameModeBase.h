@@ -42,7 +42,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		int NumOfLaps = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		int NumOfCheckpointsNeeded = 8;
+		int NumOfCheckpointsNeeded = 7;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool CanStart = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
