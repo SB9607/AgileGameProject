@@ -10,6 +10,7 @@ class UUserWidget;
 class UGameHud;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCountdownChanged, int, StartTime);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSpeedChanged, FString, speed);
 
 UCLASS()
 class AGILEGAMEPROJECT_API AAgileGameProjectGameModeBase : public AGameModeBase
@@ -36,6 +37,8 @@ public:
 		UGameHud* GameHud;
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 		FOnCountdownChanged OnCountdownChanged;
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+		FOnSpeedChanged OnSpeedChanged;
 
 	UPROPERTY(VisibleAnywhere)
 		int StartTime = 3;
@@ -47,4 +50,5 @@ public:
 		bool CanStart = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool PlayerWin;
+
 };

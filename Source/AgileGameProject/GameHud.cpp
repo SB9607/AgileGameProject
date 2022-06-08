@@ -11,11 +11,19 @@ void UGameHud::NativeConstruct()
 	if (IsValid(GoClass))
 	{
 		UUserWidget* Widget = CreateWidget(GetWorld(), GoClass);
-
 		if (Widget)
 		{
 			Widget->AddToViewport();
 		}
 	}
+	GameModeRef = Cast<AAgileGameProjectGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	if (GameModeRef)
+	{
+		GameModeRef->OnSpeedChanged.AddDynamic(this, &UGameHud::DisplaySpeed);
+	}
 }
 
+void UGameHud::DisplaySpeed(FString speed)
+{
+	SpeedText->SetText(FText::FromString(speed));
+}

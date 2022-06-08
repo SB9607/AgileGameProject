@@ -22,4 +22,8 @@ public:
 		AAgileGameProjectGameModeBase* GameModeRef;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TSubclassOf<UUserWidget> GoClass;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+		UTextBlock* SpeedText;
+	UFUNCTION(BlueprintCallable)
+		void DisplaySpeed(FString speed);
 };
