@@ -59,7 +59,7 @@ void AAgileGameProjectGameModeBase::GameOver(bool bWin)
 		}
 		if (bWin == false)
 		{
-			UGameplayStatics::OpenLevel(World, TEXT("LooseEndLevel"));
+			UGameplayStatics::OpenLevel(World, TEXT("LoseEndLevel"));
 		}
 	}
 }

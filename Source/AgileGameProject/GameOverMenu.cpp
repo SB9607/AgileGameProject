@@ -27,7 +27,7 @@ void UGameOverMenu::NativeConstruct()
 
 void UGameOverMenu::ShowWinLoose(bool Win)
 {
-	UE_LOG(LogTemp, Warning, TEXT("win/loose"));
+	// UE_LOG(LogTemp, Warning, TEXT("win/lose"));
 	// Set win text to  display win or loose based on win condition passed from game mode
 	if (Win == true)
 	{
@@ -35,7 +35,7 @@ void UGameOverMenu::ShowWinLoose(bool Win)
 	}
 	else
 	{
-		WinText->SetText(FText::FromString("You Loose!"));
+		WinText->SetText(FText::FromString("You Lose!"));
 	}
 }
 
